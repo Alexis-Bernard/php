@@ -24,6 +24,6 @@ if (!isset($_GET['action'])) $_GET['action'] = "readall";
 $_GET['controller'] = 'Controller' . ucfirst(isset($_GET['controller']) ? $_GET["controller"] : 'Farlane');
 
 if (class_exists($_GET['controller']) && in_array($_GET["action"], get_class_methods($_GET['controller'])))
-	$_GET['controller']::$_GET["action"]();
-else Error::printerror("Le nom de la classe ou de la méthode n'existe pas. '{$_GET['controller']}::{$_GET['action']}()'");
+	$_GET['controller']::{$_GET["action"]}();
+else erreur::printerror("Le nom de la classe ou de la méthode n'existe pas. '{$_GET['controller']}::{$_GET['action']}()'");
 ?>

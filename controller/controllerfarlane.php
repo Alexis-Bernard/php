@@ -21,7 +21,7 @@ class Controllerfarlane {
 	}
 
 	public static function delete() {
-	    Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 	    $id = $_GET['id'];
 		Modelfarlane::delete($id);
 		$pagetitle='Résultat';
@@ -31,7 +31,7 @@ class Controllerfarlane {
 	}
 
 	public static function create() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$pagetitle="Création d'un farlane";
 		$view='update';
         $id = isset($_POST['id']) ? $_POST['id'] : ""; // $_POST est initialisé si le formulaire à rencontré une erreur
@@ -44,7 +44,7 @@ class Controllerfarlane {
 	}
 
 	public static function update() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$pagetitle='Modification du farlane';
 		$view = 'update';
 		$o = Modelfarlane::select($_GET['id']);
@@ -58,7 +58,7 @@ class Controllerfarlane {
 	}
 
 	public static function created() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$view='created';
 		$pagetitle='Résultat';
 		if (Modelfarlane::save($_POST)){
@@ -70,7 +70,7 @@ class Controllerfarlane {
 	}
 	
 	public static function updated() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		Modelfarlane::update($_POST);
 		$id = $_POST['id'];
 		$pagetitle='Résultat';

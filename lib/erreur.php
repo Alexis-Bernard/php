@@ -1,5 +1,5 @@
 <?php
-Class Error{
+Class erreur{
     protected static $object = "error";
     public static function printerror($ErrorMessage) {
         $pagetitle='Erreur';

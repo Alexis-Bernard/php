@@ -17,7 +17,8 @@
         if (isset($_SESSION['mail'])){
             echo "<a href='index.php?controller=utilisateur&action=disconnect'>Se déconnecter</a>";
             $nomEtPrenom = $_SESSION['prenom'] . ' ' . $_SESSION['nom'] . ($_SESSION['admin'] ? ' (Admin)' : '');
-            echo "<p>Connecté en tant que $nomEtPrenom</p>";
+            $confirme = !(isset($_SESSION['mail']) && $_SESSION['confirmed']) ? "(Pas confirmé)" : "";
+            echo "<p>Connecté en tant que $nomEtPrenom $confirme</p>";
         }
         else echo "
         <a href='index.php?controller=utilisateur&action=connexion'>Connexion</a>

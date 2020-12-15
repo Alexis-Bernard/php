@@ -4,7 +4,7 @@ class ControllerTypes {
 	protected static $object = "types";
 
 	public static function readall() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
         $view = 'list';
         $pagetitle = 'Liste des types';
         $tab_o = Modeltypes::selectAll();
@@ -12,7 +12,7 @@ class ControllerTypes {
 	}
 
 	public static function read() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$pagetitle='Détail du type';
 		$type = $_GET["type"];
 		$o = Modeltypes::select($type);
@@ -22,18 +22,18 @@ class ControllerTypes {
 	}
 
 	public static function delete() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 	    $type = $_GET['type'];
         $pagetitle='Résultat';
 		if (!Modeltypes::delete($type))
-            Error::printerror("Le type $type n'a pas été supprimé, une erreur est survenue");
+            erreur::printerror("Le type $type n'a pas été supprimé, une erreur est survenue");
         $view = 'deleted';
         $tab_o = Modeltypes::selectAll();
 		require File::build_path(array("view","view.php"));
 	}
 
 	public static function create() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$pagetitle="Création d'un farlane";
 		$view='update';
         $type = isset($_POST['type']) ? $_POST['type'] : ""; // $_POST est initialisé si le formulaire à rencontré une erreur
@@ -47,7 +47,7 @@ class ControllerTypes {
 	}
 
 	public static function update() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$pagetitle='Modification du type';
 		$view = 'update';
 		$o = Modeltypes::select($_GET['type']);
@@ -62,7 +62,7 @@ class ControllerTypes {
 	}
 
 	public static function created() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		$view='created';
 		$pagetitle='Résultat';
         if (Modeltypes::save($_POST)){
@@ -74,7 +74,7 @@ class ControllerTypes {
 	}
 
 	public static function updated() {
-        Error::printErrorIfNotAdmin();
+        erreur::printErrorIfNotAdmin();
 		Modeltypes::update($_POST);
 		$type = $_POST['type'];
 		$pagetitle='Résultat';
