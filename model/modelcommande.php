@@ -3,8 +3,10 @@ require_once File::build_path(array("config","conf.php"));
 class Modelcommande extends Model {
 
     private $amount;
+    private $id_farlane;
+    private $mail_utilisateur;
     protected static $object = "commande";
-    protected static $primary='id';
+    protected static $primary='id_farlane';
 
     public function getId() {
         return $this->id;
@@ -14,27 +16,28 @@ class Modelcommande extends Model {
         return $this->type;
     }
 
-    public function getDuree() {
-        return $this->duree;
+    public function getAmount() {
+        return $this->amount;
     }
 
-    public static function getPath($primary_value){
-        $table_name = static::$object;
-        $class_name = 'Model' . ucfirst(static::$object);
-        $primary_key = static::$primary;
+    function ajouterArticle($libelleProduit,$qteProduit,$prixProduit)
+    {
 
-        $sql = "SELECT path
-                FROM farlane
-                INNER JOIN types ON farlane.type = types.type
-                where id=:nom_tag";
-        $req_prep = Model::$pdo->prepare($sql);
+        //Si le panier existe
+        if (creationPanier()) {
+            //Si le produit existe déjà on ajoute seulement la quantité
+            $positionProduit = array_search($libelleProduit, $_SESSION['panier']['libelleProduit']);
 
-        $values = array(
-            "nom_tag" => $primary_value,
-        );
-        $req_prep->execute($values);
-        $filename = $req_prep->fetchAll()[0]['path'];
-        return "img/" . $filename;
+            if ($positionProduit !== false) {
+                $_SESSION['panier']['qteProduit'][$positionProduit] += $qteProduit;
+            } else {
+                //Sinon on ajoute le produit
+                array_push($_SESSION['panier']['libelleProduit'], $libelleProduit);
+                array_push($_SESSION['panier']['qteProduit'], $qteProduit);
+                array_push($_SESSION['panier']['prixProduit'], $prixProduit);
+            }
+        } else
+            echo "Un problème est survenu veuillez contacter l'administrateur du site.";
     }
 }
 ?>
