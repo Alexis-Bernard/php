@@ -35,7 +35,7 @@
 
 <footer>
 	<p style="border: 1px solid #000000;text-align:right;padding-right:1em;">
-		Site de covoiturage d'Ascoz
+		Site de vente à emporter de Farlane.
 	</p>
 </footer>
 </html>

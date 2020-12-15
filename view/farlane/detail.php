@@ -4,7 +4,7 @@ $id = htmlspecialchars($o->getId());
 $type = htmlspecialchars($o->getType());
 $duree = htmlspecialchars($o->getDuree());
 echo "<p> Farlane d'ID $id, de type $type et de durée $duree Heures</p>";
-echo "<img src='$path' alt='A wild farlane appear'>";
+echo "<img src='$path' alt='A wild farlane appear' height='500' width='667'>";
 if (isset($_SESSION['mail']) && $_SESSION['admin']) {
     echo "
 <form method='get' action='index.php'>
