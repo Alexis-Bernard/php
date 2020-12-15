@@ -151,7 +151,7 @@ class ControllerUtilisateur {
         if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL) && ModelUtilisateur::save($_POST)){
             $mail = $_POST["mail"];
             $tab_o = ModelUtilisateur::selectAll();
-            $lien = "https://webinfo.iutmontp.univ-montp2.fr/~bernarda/php/index.php?controller=utilisateur&action=verify&mail=$mail&key=$confirmekey";
+            $lien = "https://webinfo.iutmontp.univ-montp2.fr/~bernarda/eCommerce/index.php?controller=utilisateur&action=verify&mail=$mail&key=$confirmekey";
             mail ($mail ,"Lien d'activation de compte","Cliquez sur le lien suivant : $lien");
             require File::build_path(array("view","view.php"));
         }

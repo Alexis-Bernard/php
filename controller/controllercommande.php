@@ -14,7 +14,7 @@ class ControllerCommande {
         $pagetitle='Détail du type';
         $type = $_GET["type"];
         $o = Modelcommande::select($type);
-        if ($o == NULL) Error::printerror("le type $type n'existe pas !");
+        if ($o == NULL) Erreur::printerror("le type $type n'existe pas !");
         $view = 'detail';
         require File::build_path(array("view","view.php"));
     }
@@ -23,7 +23,7 @@ class ControllerCommande {
         $type = $_GET['type'];
         $pagetitle='Résultat';
         if (!Modelcommande::delete($type))
-            Error::printerror("Le type $type n'a pas été supprimé, une erreur est survenue");
+            Erreur::printerror("Le type $type n'a pas été supprimé, une erreur est survenue");
         $view = 'deleted';
         $tab_o = Modelcommande::selectAll();
         require File::build_path(array("view","view.php"));
@@ -61,7 +61,7 @@ class ControllerCommande {
     }
 
     public static function created() {
-        Error::printErrorIfNotAdmin();
+        Erreur::printErrorIfNotAdmin();
         $view='created';
         $pagetitle='Résultat';
         if (Modelcommande::save($_POST)){
@@ -73,7 +73,7 @@ class ControllerCommande {
     }
 
     public static function updated() {
-        Error::printErrorIfNotAdmin();
+        Erreur::printErrorIfNotAdmin();
         Modelcommande::update($_POST);
         $type = $_POST['type'];
         $pagetitle='Résultat';
